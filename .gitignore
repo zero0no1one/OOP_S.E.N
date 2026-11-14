@@ -1,0 +1,41 @@
+# Dependencies and generated output
+node_modules/
+dist/
+target/
+build/
+.gradle/
+*.apk
+*.aab
+*.aar
+*.class
+*.jar
+!frontend/android/gradle/wrapper/gradle-wrapper.jar
+
+# Credentials and machine-specific settings
+.env
+.env.*
+!.env.example
+*.dpapi
+*.jks
+*.keystore
+*.p12
+*.pfx
+*.key
+local.properties
+*.log
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
+
+# Native generated assets (recreated by npx cap sync)
+frontend/android/app/src/main/assets/
+frontend/android/app/src/main/res/xml/config.xml
+frontend/android/capacitor-cordova-android-plugins/
+frontend/ios/App/App/public/
+frontend/ios/App/App/capacitor.config.json
+frontend/ios/App/App/config.xml
+frontend/ios/capacitor-cordova-ios-plugins/
+Pods/
+DerivedData/
+xcuserdata/

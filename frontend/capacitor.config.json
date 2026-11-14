@@ -1,0 +1,11 @@
+{
+  "appId": "app.studyspot.map",
+  "appName": "StudySpot Map",
+  "webDir": "dist",
+  "appendUserAgent": " StudySpotMap/1.5",
+  "server": {
+    "hostname": "localhost",
+    "androidScheme": "https",
+    "iosScheme": "capacitor"
+  }
+}

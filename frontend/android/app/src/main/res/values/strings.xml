@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">StudySpot Map</string>
+    <string name="title_activity_main">StudySpot Map</string>
+    <string name="package_name">app.studyspot.map</string>
+    <string name="custom_url_scheme">app.studyspot.map</string>
+</resources>
