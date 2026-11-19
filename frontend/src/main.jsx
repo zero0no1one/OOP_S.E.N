@@ -358,7 +358,21 @@ function App() {
         {loading ? <p role="status">Loading study spots…</p> : visible.length
           ? visible.map((spot, index) => card(spot, tab === 'Explore' && index === 0))
           : !loadError && <div className="empty"><b>{tab === 'Saved' ? 'Nothing saved yet' : spots.length ? 'No spots match' : 'No study spots yet'}</b>
-            {tab === 'Saved' ? 'Open a spot and bookmark it to keep it here.' : spots.length ? 'Clear a filter or add a spot.' : 'Tap Add spot to create the first one.'}</div>}
+            {tab === 'Saved'
+  ? 'Open a spot and bookmark it to keep it here.'
+  : spots.length
+    ? <>
+        Clear a filter or add a spot.
+        <button className="btn" onClick={() => {
+          setQuery('');
+          setNeeds([]);
+          setType('All');
+        }}>
+          Clear filters
+        </button>
+      </>
+    : 'Tap Add spot to create the first one.'}
+</div>}
       </div>}
     </main>
     <nav className="tabs" aria-label="Main" inert={current ? true : undefined}>
