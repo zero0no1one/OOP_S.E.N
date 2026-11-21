@@ -355,12 +355,42 @@ function App() {
           <div className="rh"><b>{visible.length} {visible.length === 1 ? 'spot' : 'spots'}</b>
             <span>{needs.length ? 'Ranked by your picks' : 'Ranked by overall score'}</span></div>
         </> : <h1 className="hello">Saved spots</h1>}
-        {loading ? <p role="status">Loading study spots…</p> : visible.length
-          ? visible.map((spot, index) => card(spot, tab === 'Explore' && index === 0))
-          : !loadError && <div className="empty"><b>{tab === 'Saved' ? 'Nothing saved yet' : spots.length ? 'No spots match' : 'No study spots yet'}</b>
-            {tab === 'Saved' ? 'Open a spot and bookmark it to keep it here.' : spots.length ? 'Clear a filter or add a spot.' : 'Tap Add spot to create the first one.'}</div>}
-      </div>}
-    </main>
+       
+{loading ? <p role="status">Loading study spots…</p> : visible.length
+  ? visible.map((spot, index) => card(spot, tab === 'Explore' && index === 0))
+  : !loadError && (
+      <div className="empty">
+        <b>
+          {tab === 'Saved'
+            ? 'Nothing saved yet'
+            : spots.length
+              ? 'No spots match'
+              : 'No study spots yet'}
+        </b>
+
+        {tab === 'Saved'
+          ? 'Open a spot and bookmark it to keep it here.'
+          : spots.length
+            ? <>
+                Clear a filter or add a spot.
+                <button
+                  className="text-button"
+                  type="button"
+                  onClick={() => {
+                    setQuery('');
+                    setNeeds([]);
+                    setType('All');
+                  }}
+                >
+                  Clear filters
+                </button>
+              </>
+            : 'Tap Add spot to create the first one.'}
+                 </div>
+    )}
+  </div>}
+</main>
+    
     <nav className="tabs" aria-label="Main" inert={current ? true : undefined}>
       {tabs.map(([label, icon]) => <button key={label} disabled={busy} aria-current={tab === label ? 'page' : undefined}
         onClick={() => navigate(label)}><span className="pl" aria-hidden="true">{icon}</span>{label}</button>)}
@@ -370,7 +400,8 @@ function App() {
       openForm={kind => { setError(''); setNotice(''); setForm(kind); }} />}
     {current && form && <SpotForm key={form} spot={current} kind={form} busy={busy} error={error} save={save} close={() => setForm(null)} />}
     {notice && <div className="confirmation" role="status" onAnimationEnd={() => setNotice('')}>{notice}</div>}
-    </div>{destination && <NavigationScreen spot={destination} initialPosition={gps.position} close={() => setDestination(null)} />}
+    </div>
+    {destination && <NavigationScreen spot={destination} initialPosition={gps.position} close={() => setDestination(null)} />}
   </div>;
 }
 
